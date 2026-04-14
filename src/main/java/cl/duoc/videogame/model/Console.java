@@ -38,4 +38,8 @@ public class Console {
     @JoinColumn(name = "companie_id", nullable = false)
     private Companies companie;
 
+    @Builder.Default
+    @ManyToOne(mappedBy = "consoles")
+    
+
 }
