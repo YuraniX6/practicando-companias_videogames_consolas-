@@ -28,4 +28,5 @@ public class Companies {
     @OneToMany(mappedBy = "companie")//indica el dueño de la relacion
     private Set<Console> consoles = new HashSet<>();//incluimos la coleccion a la relaccion
 
+    @Override
 }
