@@ -25,8 +25,22 @@ public class Companies {
 
     private String country;
     //uno a muchos relacion
-    @OneToMany(mappedBy = "companie")//indica el dueño de la relacion
+    @Builder.Default
+    @OneToMany(mappedBy = "companies")//indica el dueño de la relacion
     private Set<Console> consoles = new HashSet<>();//incluimos la coleccion a la relaccion
 
     @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        
+        if(!(o instanceof Companies)) return false;
+        
+        Companies other = (Companies) o;
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode(){
+        return 31;
+    }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -39,7 +40,22 @@ public class Console {
     private Companies companie;
 
     @Builder.Default
-    @ManyToOne(mappedBy = "consoles")
+    @ManyToMany(mappedBy = "consoles")
+    private Set<Videogame> videogames = new HashSet<>();
     
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
 
+        if(!(o instanceof Console)) return false;
+
+        Console other = (Console) o;
+        return id != null && id.equals(other.getId());
+    }
+
+
+    @Override
+    public int hashCode(){
+        return 31;
+    }
 }
